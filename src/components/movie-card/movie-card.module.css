@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  max-height: 25em;
+  margin: 1em;
+  text-align: left;
+}
+
+.container img {
+  flex: 1;
+}
+
+.movieInfo {
+  flex: 2;
+  margin-left: 1em;
+}
