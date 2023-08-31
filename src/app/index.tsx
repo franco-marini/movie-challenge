@@ -1,38 +1,30 @@
 import './app.css'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
-import reactLogo from '../assets/react.svg'
+import MovieCard from '../components/movie-card'
+import SearchBar from '../components/search-bar'
+import { useFetchMovies } from '../hooks/useFetchMovie'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [filter, setFilter] = useState<string>('')
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { data, error, isLoading } = useFetchMovies(filter)
+
+  const handleOnSubmit = useCallback((text: string) => {
+    setFilter(text)
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1)
-          }}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <SearchBar onSubmit={handleOnSubmit} />
+      {isLoading && <div>Getting the movies</div>}
+      {error !== null && <div>There was an error trying to get the movies</div>}
+      {data && data.length > 0 && (
+        data.map((movie) => {
+          return <MovieCard key={movie.id} movie={movie} />
+        })
+      )}
     </>
   )
 }
