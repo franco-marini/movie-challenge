@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  margin: 1em;
+  justify-content: space-between;
+  height: 3em;
+}
+
+input[type='text'] {
+  flex: 3;
+}
+
+input[type='submit'] {
+  flex: 1;
+  margin-left: 1em;
+}
