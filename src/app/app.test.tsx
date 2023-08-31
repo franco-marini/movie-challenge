@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import App from './'
 
@@ -10,5 +10,5 @@ test('Example tested', () => {
 
 test('Renders the main page', () => {
   render(<App />)
-  expect(true).toBeTruthy()
+  expect(screen.getByText('Vite + React')).toBeTruthy()
 })

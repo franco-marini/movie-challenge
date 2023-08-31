@@ -30,6 +30,9 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'no-trailing-spaces': 'error',
     'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
     'comma-dangle': [
       'error',
       {
